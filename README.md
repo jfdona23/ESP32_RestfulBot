@@ -33,6 +33,7 @@ my_token = creds("localhost", "myUser", "strongT0K3N")
 $ git submodule init
 $ git submodule update
 ```
+* [**Urequests**](https://github.com/micropython/micropython-lib/tree/master/urequests) is a micropython implementation of the well known *requests* librery.
 
 ## Related links
 1. [Building a Basic RestFul API in Python](https://www.codementor.io/@sagaragarwal94/building-a-basic-restful-api-in-python-58k02xsiq)

@@ -15,7 +15,7 @@ The core idea is based on how several IoT smart devices works: they're constantl
 Here I use a local API made with Python, then the robot calls such API in order to retrieve new instructions. To achieve that, there is an endpoint and when the robot places a call it will retrieve a JSON object containing an *instruction* and a *hash*.
 The instruction will be evaluated to trigger a proper function, and the hash ensures the robot execute the instruction only once.
 
-## Libraries used in this project
+## Libraries and submodules used in this project
 * **Credentials** is just a Class to create objects which store passwords and personal data. Then I ignore *credentials.py* file in *.gitignore*. The Class content is the following:
 ```python
 class Creds:
@@ -27,6 +27,11 @@ class Creds:
 # And then I can create any secret as an object:
 my_wifi = creds("dummyHost", "mySSID", "mySuperPassword")
 my_token = creds("localhost", "myUser", "strongT0K3N")
+```
+* Some **AvoiderBot** files are imported as a GIT submodule. Remember to initialize such module as follows:
+```
+$ git submodule init
+$ git submodule update
 ```
 
 ## Related links

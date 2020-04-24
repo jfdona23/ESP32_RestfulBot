@@ -10,7 +10,7 @@
 This project came after my [AvoioderBot](https://github.com/jfdona23/AvoiderBot) project as an improvement of it. In this case I will submit instructions like *move forward*, *move backward*, *turn left* or *turn right* through an API.
 The hardware is the same used in the [AvoioderBot](https://github.com/jfdona23/AvoiderBot) project.
 
-## How it works...briefly
+## How it works
 The core idea is based on how several IoT smart devices works: they're constantly calling a remote API asking about what to do. i.e. *turn on*, *change color*, *set speed*, etcetera.
 Here I use a local API made with Python, then the robot calls such API in order to retrieve new instructions. To achieve that, there is an endpoint and when the robot places a call it will retrieve a JSON object containing an *instruction* and a *hash*.
 The instruction will be evaluated to trigger a proper function, and the hash ensures the robot execute the instruction only once.

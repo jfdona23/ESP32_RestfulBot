@@ -1,0 +1,3 @@
+[submodule "modules/AvoiderBot"]
+	path = modules/AvoiderBot
+	url = https://github.com/jfdona23/AvoiderBot

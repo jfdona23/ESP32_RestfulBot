@@ -1,1 +1,1 @@
-../../AvoiderBot/boot.py
+../modules/AvoiderBot/boot.py

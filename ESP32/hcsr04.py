@@ -1,1 +1,1 @@
-../../AvoiderBot/hcsr04.py
+../modules/AvoiderBot/hcsr04.py

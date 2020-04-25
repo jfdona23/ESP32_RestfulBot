@@ -1,9 +1,12 @@
-from machine import Pin, PWM
+from machine import Pin, PWM, freq
 from utime import sleep
 from urequests import request
+from credentials import my_api
 from motors import Motors
 from hcsr04 import HCSR04
 
+# Set CPU freq to 80 MHz to improve stability
+freq(80000000)
 
 # LED port definitions
 ledBoard = Pin(2, Pin.OUT)
@@ -26,8 +29,8 @@ motion = Motors(motorRA, motorRB, motorLA, motorLB)
 motion.stop() # Ensure the motors are stopped
 
 # API definitions
-url = 'http://192.168.0.90:8080/v1/outbound'
-method = 'POST'
+url = my_api.hostname
+method = 'GET'
 lastHash = 0
 
 def blinkLed(led, onTime, offTime, blinks):     # Useful function to control led blinking.
@@ -55,19 +58,23 @@ def pickOrder(order):
 
 
 # Main loop
-while sonar.distance_cm > 15:
+while sonar.distance_cm() > 15:
     try:
         r = getUrl(method, url)
     except:
-        blinkLed(ledRed, 0.5, 0.3, 2)
-        pass
-    if lastHash != r['hash']:
-        pickOrder(r['order'])()
-        sleep(r['argument'])
-        lastHash = r['hash']
-    else:
-        pass
+        blinkLed(ledRed, 0.5, 0.3, 1)
+        continue
+
+    try:
+        if lastHash != r['hash']:
+            pickOrder(r['order'])()
+            sleep(r['time'])
+            motion.stop()
+            lastHash = r['hash']
+    except KeyError:
+        blinkLed(ledBlue, 0.5, 0.3, 1)
+        continue
 
 motion.stop()
-from machine import soft_reset
-soft_reset()
+from machine import reset
+reset()

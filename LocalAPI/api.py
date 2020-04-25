@@ -22,8 +22,8 @@ def putOrder():
             'stop'
             ):
             abort(400)
-        argument= request.json.get('argument', 0)
-        response = {'cmd':order, 'arg':argument, 'hash':hash(time())}
+        time_ = request.json.get('time', 1)
+        response = {'order':order, 'time':time_, 'hash':hash(time())}
         return jsonify({'status': 'received'}), 201
 
 @app.route('/v1/outbound', methods=['GET'])

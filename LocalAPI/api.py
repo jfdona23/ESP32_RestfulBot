@@ -14,14 +14,15 @@ def putOrder():
     else:
         global response
         order = request.json['order']
-        if order not in ( \
-            'forward', \
-            'backward', \
-            'left', \
-            'right' \
+        if order not in (
+            'forward',
+            'backward',
+            'left',
+            'right',
+            'stop'
             ):
             abort(400)
-        argument= request.json.get('argument', '')
+        argument= request.json.get('argument', 0)
         response = {'cmd':order, 'arg':argument, 'hash':hash(time())}
         return jsonify({'status': 'received'}), 201
 
